@@ -21,20 +21,8 @@
     </body>
     <script>
         let str = "let's be friend";
+        // 大多数人都能想到的办法
         function ReverseString(str) {
-            // let arr, newStr;
-            // arr = str.split(' ');
-            // arr = arr.map(item => {
-            //     let ar = item.split(''),
-            //         st;
-            //     ar = ar.reverse();
-            //     st = ar.join('');
-            //     return st;
-            // });
-            // newStr = arr.join(' ');
-            // return newStr;
-
-            // 以下代码思路和上面的一样 只不过不用生成变量，更优雅
             return str
                 .split(' ')
                 .map(item => {
@@ -45,17 +33,40 @@
                 })
                 .join(' ');
         }
-        // 还有一种方法就是使用for循环倒序遍历 但是我个人不是很喜欢for循环
+        // 其实split能接受两种参数： 字符串常量和正则
         function ReverseString2(str) {
+            return str
+                .split(/\s/g)
+                .map(item => {
+                    return item
+                        .split('')
+                        .reverse()
+                        .join('');
+                })
+                .join(' ');
+        }
+        // 或者干脆不用split 而选择用match
+        function ReverseString3(str) {
+            // split表示分割 而match表示匹配 从左到右
+            return str
+                .match(/[\w']+/g)
+                .map(item => {
+                    return item
+                        .split('')
+                        .reverse()
+                        .join('');
+                })
+                .join(' ');
+        }
+        // 还有一种方法就是使用for循环倒序遍历 但是我个人不是很喜欢for循环
+        function ReverseString4(str) {
             let arr = [];
             for (let i = str.length - 1; i >= 0; i--) {
                 arr.push(str[i]);
             }
             return arr.join('');
         }
-        // 这两个方法只适用于带空格的字符串，如果不带空格还需要稍加改动（indexOf 判断字符串中有没有空格）
-
-        let newStr = ReverseString(str);
+        let newStr = ReverseString3(str);
         document.getElementById('container').innerHTML = newStr;
     </script>
 </html>
