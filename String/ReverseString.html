@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>反转字符串</title>
+    </head>
+    <body>
+        <h1>
+            反转字符串
+        </h1>
+        思路： <br />
+        1. 先将字符串通过空格转换成数组【arr】，得到["let's", "be","friend"]
+        <br />
+        2. 遍历【arr】数组，
+        再将数组的每一项转换成数组，同时reverse，之后再将数组转换成字符串 <br />
+        3. 将【arr】数组转换成字符串 <br />
+        输入 let's be friend 输出
+        <div id="container"></div>
+    </body>
+    <script>
+        let str = "let's be friend";
+        function ReverseString(str) {
+            // let arr, newStr;
+            // arr = str.split(' ');
+            // arr = arr.map(item => {
+            //     let ar = item.split(''),
+            //         st;
+            //     ar = ar.reverse();
+            //     st = ar.join('');
+            //     return st;
+            // });
+            // newStr = arr.join(' ');
+            // return newStr;
+
+            // 以下代码思路和上面的一样 只不过不用生成变量，更优雅
+            return str
+                .split(' ')
+                .map(item => {
+                    return item
+                        .split('')
+                        .reverse()
+                        .join('');
+                })
+                .join(' ');
+        }
+        // 还有一种方法就是使用for循环倒序遍历 但是我个人不是很喜欢for循环
+        function ReverseString2(str) {
+            let arr = [];
+            for (let i = str.length - 1; i >= 0; i--) {
+                arr.push(str[i]);
+            }
+            return arr.join('');
+        }
+        // 这两个方法只适用于带空格的字符串，如果不带空格还需要稍加改动（indexOf 判断字符串中有没有空格）
+
+        let newStr = ReverseString(str);
+        document.getElementById('container').innerHTML = newStr;
+    </script>
+</html>
