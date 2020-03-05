@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 使用 栈 这种数据结构 先将字符串转成数组 然后循环遍历 先判断有没有（ 如果有的话就存入栈中
+    // 再判断有没有） 如果有的话就将栈顶项pop出来 
+    // 最后 如果栈中是空的 那么就说明是正确的 如果不是 就说明是错误的
+    function CheckBrackets(str) {
+        let arr = [], stack = []
+        if (str) {
+            arr = str.split('')
+        } else {
+            throw Error('非法字符串')
+        }
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] == '(') {
+                stack.push(arr[i])
+            } else if (arr[i] == ')') {
+                // 这里判断 如果）之前没有（的话 报错
+                if (stack.length !== 0) {
+                    stack.pop()
+                } else {
+                    return false
+                }
+            }
+        }
+        return stack.length == 0
+    }
+    console.log(CheckBrackets('(dadsda(((dasdsd)dasdsada)dasdsadd)(dasdada(ddada))dsaddadsa)'))
+</script>
+</html>
