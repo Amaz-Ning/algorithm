@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>
+
+    </span>
+    <span></span>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <p>
+
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+    <p>
+        
+    </p>
+</body>
+<script>
+    // 获取页面中所有的标签
+    const eles = document.getElementsByTagName('*')
+    // 将伪数组转换成真数组
+    const arr = Array.from(eles)
+    // 创建对象，并且遍历arr
+    const tagObj = {}
+    arr.forEach(ele => {
+        if (tagObj[ele.tagName]) {
+            tagObj[ele.tagName] += 1
+        } else {
+            tagObj[ele.tagName] = 1
+        }
+    })
+    // 遍历对象 将属性存在数组中
+    const sortArr = []
+    for (name in tagObj) {
+        sortArr.push({
+            name: name,
+            count: tagObj[name]
+        })
+    }
+    // 给数组排序
+    sortArr.sort((a, b) => {
+        return b.count - a.count
+    })
+    console.log(sortArr)
+</script>
+</html>
