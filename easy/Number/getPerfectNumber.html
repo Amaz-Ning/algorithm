@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    求完美数
+</body>
+<script>
+    function sum(num) {
+        let arr = [], result = []
+        for (let i = 0; i < num; i++) {
+            for (let j = 0; j < i; j++) {
+                if (i%j ==0) {
+                    arr.push(j)
+                }
+            }
+            const sumNumber = arr.length === 0 ? null : arr.reduce((a, b) => {
+                return a+b
+            })
+            if (sumNumber === i) {
+                result.push(i)
+            }
+            arr = []
+        }
+    return result
+}
+console.log(sum(1000))
+</script>
+</html>
